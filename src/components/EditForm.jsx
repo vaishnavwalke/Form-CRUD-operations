@@ -7,7 +7,7 @@ import { CiCalendar } from "react-icons/Ci";
 import axios from "axios";
 import locale from "date-fns/locale/zh-CN";
 // import Moment from "react-moment";
-import { format, parseISO } from "date-fns";
+import { format, parse, parseISO } from "date-fns";
 import moment from "moment";
 import { useParams } from "react-router-dom";
 const EditForm = () => {
@@ -56,11 +56,19 @@ const EditForm = () => {
       });
   }, [id]);
 
-  //console.log(employeeData);
-  console.log(formData);
-  const handleDateChange = (dob) => {
-    const formattedDOBt = dob.toISOString();
+  //console.log(parseISO(formData.DOB));
+  // const newdob = parseISO(formData.DOB);
+  // const news = parseISO(formData.StartDate);
+  // const newe = parseISO(formData.EndDate);
+  console.log("api data", formData.DOB);
 
+  // console.log("API data" + formData);
+  const handleDateChange = (dob) => {
+    console.log(dob);
+    //const isoDateString = new Date(dob);
+    //console.log(isoDateString);
+    const formattedDOBt = dob.toISOString();
+    console.log(dob);
     const dates = formattedDOBt.slice(0, 10);
     setDOB(formattedDOBt.slice(0, 10));
     setFormData({
@@ -115,7 +123,7 @@ const EditForm = () => {
       CurrentSalary: salary,
     });
 
-    console.log(formData);
+    console.log("Form data" + formData);
     // Handle form submission logic here
     try {
       const response = await axios.put(
@@ -177,7 +185,11 @@ const EditForm = () => {
             className="datepicker"
             id="dob"
             name="DOB"
+            // value={parseISO(formData.DOB)}
             selected={formData.DOB}
+            //{...console.log(parseISO(formData.DOB))}
+            // {...console.log(parseISO(format(formData.DOB, "dd-MM-yy")))}
+            //{...console.log(formData.DOB)}
             onChange={handleDateChange}
             dateFormat="dd-MM-yy" // You can customize the date format
             placeholderText="Select DOB"
