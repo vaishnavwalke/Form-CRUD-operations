@@ -10,6 +10,8 @@ import EmployeeList from "./EmployeeList";
 import SelectEmployee from "./SelectEmployee";
 import Home from "./Home";
 import EditForm from "./EditForm";
+
+import PickDate from "./PickDate";
 const Routing = () => {
   return (
     <Router>
@@ -25,6 +27,9 @@ const Routing = () => {
             <li>
               <Link to="/SelectEmployee">SelectEmployee</Link>
             </li>
+            <li>
+              <Link to="/PickDate">PickDate</Link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -33,6 +38,7 @@ const Routing = () => {
         <Route path="/EmployeeList" element={<EmployeeList />} />
         <Route path="/edit/:id" element={<EditForm />} />
         <Route path="/SelectEmployee" element={<SelectEmployee />} />
+        <Route path="/PickDate" element={<PickDate />} />
       </Routes>
     </Router>
   );
